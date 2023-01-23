@@ -96,14 +96,13 @@ contract EscrowERC20 is Escrow {
         internal
         returns (uint256, bool)
     {
-        bool withdrawn = false;
         uint256 amount = _erc20Deposits[payee][token];
         if (amount > 0) {
             token.transfer(payee, amount);
             _erc20Deposits[payee][token] = 0;
-            withdrawn = true;
+            return (amount, true);
         }
 
-        return (amount, withdrawn);
+        return (amount, false);
     }
 }
