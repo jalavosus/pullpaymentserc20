@@ -6,6 +6,14 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import {PullPayment} from "@openzeppelin/contracts/security/PullPayment.sol";
 
+/**
+ * PullPaymentERC20 is {PullPayment} but it supports ERC20/BEP20/whatever tokens.
+ * Is it stupid? Maybe.
+ * Does it work? No fucking idea.
+ * Was it easy to code? Heck yes it was.
+ *
+ * Oh fuck all of these things appear in the docstring. Whatever.
+ */
 abstract contract PullPaymentERC20 is PullPayment {
     EscrowERC20 private immutable _escrowERC20;
 
@@ -52,7 +60,7 @@ abstract contract PullPaymentERC20 is PullPayment {
     }
 
     /**
-     * @dev Called by the payer to store the sent amount as credit to be pulled.
+     * @dev Called by the payer to store the sent token amount as credit to be pulled.
      * Funds sent in this way are stored in an intermediate {EscrowERC20} contract, so
      * there is no danger of them being spent before withdrawal.
      *
